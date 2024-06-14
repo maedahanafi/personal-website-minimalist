@@ -1,0 +1,62 @@
+
+/********************************** Font face **********************************/
+@font-face { /* Header font stack*/
+  font-family: NotoSerif;
+  src: url(./NotoSerif-VariableFont_wdth,wght.ttf);
+}
+@font-face { /* Body font stack */
+  font-family: AlbertSans;
+  src: url(./AlbertSans-VariableFont_wght.ttf);
+}
+
+/********************************** Color Variables **********************************/
+
+/*black and white*/
+$black: #000000;
+$white: #ffffff;
+/* gray */
+$dark-gray: #66666e;
+$mid-gray: #6d6d74;
+$light-gray: #9999a1;
+$gray-white: #9999a1;
+$gray-white-bg: #f5f5f5;
+$gray-white-button: #d4d4d8;
+
+
+/********************************** Font **********************************/
+
+$font-stack: AlbertSans;
+$font-stack-header: NotoSerif;
+$font-stack-body: AlbertSans;
+
+
+
+@mixin title-font() {
+  font-family: $font-stack-header;
+  color: $black;
+}
+
+@mixin nav-font() {
+  font-family: $font-stack;
+  color:$light-gray;
+}
+
+
+/********************************** Mixins for components **********************************/
+
+
+@mixin body() {
+  font-family: $font-stack;
+  color: $black;
+  background-color: $white;
+}
+
+@mixin nav() {
+  @include nav-font();
+
+  background-color:  $gray-white-bg;
+  border-bottom: 1px solid $black;
+
+}
+
+

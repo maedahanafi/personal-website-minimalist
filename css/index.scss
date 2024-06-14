@@ -1,0 +1,469 @@
+@use 'minimalist' as theme;
+@use 'layout' as layout;
+@use 'components' as components;
+
+/********************************** Paddings, Margins, Spacings **********************************/
+
+$padding: 16px;
+$padding-double: 32px;
+$padding-mobile: 32px;
+
+/********************************** Font sizes **********************************/
+
+$font-size: 21px;
+$small-font-size: 18px;
+$large-font-size: 32px;
+$xlarge-font-size: 60px;
+$large-font-size-mobile: 2em;
+$font-weight-bold: 500;
+
+/********************************** Body layout and body components **********************************/
+
+$nav-bar-height: 48px;
+
+body {
+  @include layout.body-layout();
+  @include theme.body();
+
+  font-size: $font-size;
+
+  > .header{
+    @include layout.header();
+    @include theme.body();
+    padding: $padding;
+  }
+
+  .nav{
+    @include layout.nav();
+    @include theme.nav();
+    @include components.sticky-nav();
+    display: flex;
+
+    .myLinks{
+      width: 100%;
+
+      display: flex;
+      padding: 0 $padding;
+      height: $nav-bar-height;
+    }
+  }
+
+  .main{
+    @include layout.main();
+    padding: $padding;
+
+  }
+}
+
+/* Mobile phone screens */
+@media only screen and (max-device-width: 450px) {
+  html{
+  }
+
+  body {
+    @include layout.body-layout-mobile();
+    > .header{
+      margin-top: 100px;
+    }
+  }
+}
+
+/* Tablet screens */
+
+@media only screen and (max-device-width: 768px) {
+
+  html{
+  }
+}
+
+/********************************** Components: Name **********************************/
+
+.header .name{
+  font-size: $xlarge-font-size;
+  padding-top: $padding;
+  padding-bottom: $padding;
+  font-family: theme.$font-stack-header;
+  color: theme.$dark-gray;
+}
+
+
+
+/********************************** Components: Paragraph **********************************/
+.paragraph{
+  padding: $padding;
+}
+
+/********************************** Components: icon **********************************/
+.menu-icon{
+
+  display: none;
+}
+
+@media only screen and (max-device-width: 450px) {
+  .menu-icon{
+    color: theme.$black;
+    padding: 0.75em 1em;
+    text-decoration: none;
+    font-size: 2.3em;
+    display: block;
+
+    background: theme.$gray-white-bg;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+}
+
+/********************************** URLs **********************************/
+
+a{
+	text-decoration: underline;
+	color: theme.$black;
+}
+
+/********************************** Components: Nav links **********************************/
+.nav{
+  z-index: 100;
+
+  >.name{
+    font-family: theme.$font-stack-header;
+    padding: $padding;
+    padding-right: $padding-double;
+    color: theme.$dark-gray;
+  }
+
+  .button{
+    width: fit-content;
+    padding: $padding;
+
+  }
+  .clicked, .button:hover {
+    border-bottom: 4px solid theme.$black;
+    cursor: pointer;
+    color: theme.$black;
+  }
+
+  #myLinks{
+    display: flex;
+  }
+}
+
+@media only screen and (max-device-width: 450px) {
+  body{
+    .nav{
+      display: block;
+      font-size: $large-font-size-mobile;
+
+      >.name{
+        font-size: $large-font-size-mobile;
+        line-height: 2.5em;
+        padding-left: $padding-mobile;
+      }
+      #myLinks{
+        display: none;
+        background-color: theme.$gray-white-bg;
+        padding:$padding;
+
+        >.button{
+          padding: $padding;
+          display: block;
+          font-size: $large-font-size-mobile;
+          line-height: $large-font-size-mobile;
+        }
+      }
+
+    }
+  }
+}
+
+/********************************** Paragraphs  **********************************/
+p{
+	margin: inherit;
+}
+
+
+
+@media only screen and (max-device-width: 450px) {
+
+  .paragraph{
+    padding: $padding-mobile;
+  }
+}
+
+/********************************** Info card  **********************************/
+
+
+.info-card{
+  padding: $padding-double;
+    display: flex;
+    column-gap: $padding-double;
+  i{
+    color: theme.$mid-gray;
+    margin-right: $padding;
+    padding: 0.5em 0.5em;
+    text-decoration: none;
+    background: theme.$gray-white-bg;
+    position: relative;
+    right: 0;
+    top: 0;
+
+    font-size: 18px;
+    height: 18px;
+    width: 18px;
+    border-radius:5px;
+
+    border: 0.5px solid theme.$dark-gray;
+
+  }
+
+  .fa-code {
+    font-size:17px;
+  }
+
+  p{
+    padding: 2px 0px;
+  }
+}
+@media only screen and (max-device-width: 768px) {
+  .info-card {
+    display: block;
+  }
+}
+@media only screen and (max-device-width: 450px) {
+
+  .info-card {
+    display: block;
+    i{
+      margin-right: 16px;
+      padding: 16px;
+      font-size: 12px;
+      height: 32px;
+      width: 32px;
+    }
+
+    .fa-code {
+      font-size: 12px;
+    }
+  }
+
+}
+
+
+/********************************** Resume-row  **********************************/
+.resume-row {
+  padding: $padding;
+  margin: $padding 0;
+  display: grid;
+  grid-template-rows : auto auto;
+  grid-template-columns: auto;
+  grid-template-areas:
+      "resume-col-header"
+      "resume-col-content";
+
+
+  .resume-col-header{
+    font-size: $large-font-size;
+    font-family: theme.$font-stack-header;
+    padding: $padding 0;
+  }
+
+  .resume-col-content{
+    font-family: theme.$font-stack;
+
+  }
+
+}
+
+@media only screen and (max-device-width: 450px) {
+  .resume-row {
+    padding: $padding-mobile;
+    margin: $padding-mobile 0;
+  }
+}
+
+/********************************** Content box  **********************************/
+/* content- --> this means its a project, presentation, paper, item, etc.*/
+/* content-text-box --> same as above just without thumbnail */
+.content-text-box{
+	/*
+		a content-text-box contains
+		header  --  date
+		location
+		description
+		links
+	*/
+	display: grid;
+  grid-template-columns: 80% 20%;
+  grid-template-rows: auto auto auto auto;
+	grid-template-areas:
+		"tileheader date"
+		"location location"
+		"description description"
+		"links links"
+	;
+
+	padding: $padding;
+	margin: $padding 0px;
+  border-radius: 0.5em;
+
+  background-color: theme.$gray-white-bg;
+  border: 0.5px solid theme.$dark-gray;
+
+  >.header{
+    font-family: theme.$font-stack-header;
+    font-weight: $font-weight-bold;
+
+    grid-area: tileheader;
+  }
+  .location{
+    grid-area: location;
+  }
+  >.date{
+    grid-area: date;
+    text-align: right;
+    background-color: theme.$white;
+    border-radius: 0.25em;
+    color: theme.$black;
+    font-size: $small-font-size;
+    padding: 2px 4px;
+    border: 0.5px solid theme.$dark-gray;
+  }
+  .description{
+    grid-area: description;
+    .list{
+      margin-left: $padding;
+    }
+
+  }
+  .links{
+    grid-area: links;
+
+  }
+
+}
+
+
+@media only screen and (max-device-width: 768px) {
+  .content-text-box{
+    width:100%;
+    grid-template-columns: 100%;
+    grid-template-rows: auto auto auto auto auto;
+    grid-template-areas:
+        "date"
+        "tileheader"
+        "location"
+        "description"
+        "links"
+    ;
+    > .date{
+      grid-area:date;
+      text-align:left;
+      margin-bottom: $padding;
+
+    }
+  }
+}
+
+
+
+@media only screen and (max-device-width: 450px) {
+
+  .content-text-box{
+    margin-bottom: $padding-mobile;
+    padding-top: $padding-mobile;
+    > .date{
+      margin-bottom: $padding-mobile;
+    }
+  }
+}
+
+/********************************* List **************************************************************************************************/
+/* list --> this contains a compact ist of list-items and publication-items
+   list-items contains
+   	- a header within the item with darker font
+   	- a description with gray font
+   	- date
+   	- location
+   	- links
+
+   publication-items contains
+    - a header within the item with darker font
+	- title with gray font
+    - date
+    - location
+    - links
+
+*/
+.list{
+	display: grid;
+	grid-template-columns: 100%;
+	grid-auto-flow: row;
+	margin-top: $padding;
+
+  >.list-item{
+    padding: $padding;
+    border-top: theme.$dark-gray solid 0.5px;
+
+    >.header{
+      font-weight:$font-weight-bold;
+    }
+
+    >.title{
+    }
+
+    >.description{
+      grid-area: description;
+    }
+
+    >.location{
+      grid-area: location;
+    }
+    >.date{
+      grid-area: date;
+    }
+    >.links{
+      grid-area: links;
+    }
+  }
+
+  >.publication-item{
+    padding: $padding;
+    border-top: theme.$dark-gray solid 0.5px;
+
+    >.header{
+    }
+
+    >.title{
+      font-weight:$font-weight-bold;
+    }
+
+    >.location{
+      grid-area: location;
+    }
+
+    >.date{
+      grid-area: date;
+    }
+    >.links{
+      grid-area: links;
+    }
+  }
+
+  >.tabbed{
+    padding-left: $padding ;
+  }
+}
+
+
+@media only screen and (max-device-width: 450px) {
+
+  .list{
+    >.list-item{
+      padding: $padding-mobile;
+    }
+    >.publication-item{
+      padding: $padding-mobile;
+    }
+  }
+}
